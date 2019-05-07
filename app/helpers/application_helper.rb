@@ -7,7 +7,7 @@ module ApplicationHelper
     end
   end
 
-  def display_days_ago(created_at)
-    (Date.today - created_at.to_date).to_s.split('/')[0]
+  def alphabetize(tags)
+    tags.sort_by {|tag| tag.name.downcase}
   end
 end

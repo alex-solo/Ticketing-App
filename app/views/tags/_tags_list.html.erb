@@ -1,0 +1,26 @@
+<% tags_tickets = Tag.get_tags_tickets %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Tickets</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% alphabetize(@tags).each do |tag| %>
+      <tr>
+        <td>
+          <h2><%= tag.name %></h2> 
+        </td>
+        <td><%= link_to tags_tickets[tag.name], '/tickets?tag=' + tag.id.to_s %></td>
+        <td>
+          <%= link_to "Edit", edit_tag_path(tag) %>
+          <%= link_to "Delete", tag_path(tag), method: 'delete' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

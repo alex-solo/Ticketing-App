@@ -1,29 +1,6 @@
 <%= render 'shared/content_title', title: "Tags" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Tickets</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tags.each do |tag| %>
-      <tr>
-        <td>
-          <h2><%= tag.name %></h2> 
-        </td>
-        <td><%= tag.tickets.size %></td>
-        <td>
-          <%= link_to "Edit", edit_tag_path(tag) %>
-          <%= link_to "Delete", tag_path(tag), method: 'delete' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'tags_list' %>
 
 <div>
   <%= link_to "New Tag", new_tag_path, class: 'btn btn-success' %>

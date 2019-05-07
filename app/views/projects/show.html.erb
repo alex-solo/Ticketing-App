@@ -8,31 +8,5 @@
 
 
 <h3>Tickets:</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Assignee</th>
-      <th>Status</th>
-      <th>Tags</th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @project.tickets.each do |ticket| %>
-      <tr>
-        <td><h2><%= link_to ticket.name, ticket_path(ticket) %></h2></td>
-        <td><%= ticket.assignee ? ticket.assignee.name : '-' %></td>
-        <td><%= ticket.status %></td>
-        <td>
-          <%= tag_list(ticket) %>
-        </td>
-        <td>
-          <%= link_to "Edit", edit_ticket_path(ticket) %>
-          <%= link_to "Delete", ticket_path(ticket), method: 'delete' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'tickets/tickets_list', tickets: @project.tickets %>

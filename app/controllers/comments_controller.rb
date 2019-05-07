@@ -9,6 +9,10 @@ class CommentsController < ApplicationController
     @comment.creator = current_user
 
     if @comment.save
+      if params[:ticket_status].present?
+        @ticket.update_attribute(:status, params[:ticket_status])
+      end
+
       flash[:success] = "Your comment was added."
       redirect_to ticket_path(@ticket)
     else

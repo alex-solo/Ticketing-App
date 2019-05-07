@@ -2,8 +2,20 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:show, :index]
 
-  def index
-    @tickets = Ticket.all
+  def index 
+    if params[:project].present?
+      @tickets = Project.find(params[:project]).tickets
+    else
+      @tickets = Ticket.all
+    end
+
+    if params[:status].present?
+      @tickets = @tickets.where(status: params[:status])
+    end
+
+    if params[:tag].present?
+      @tickets = @tickets.joins(:tags).where("tags.id": params[:tag])
+    end
   end
 
   def show
@@ -53,4 +65,5 @@ class TicketsController < ApplicationController
   def ticket_params
     params.require(:ticket).permit(:name, :body, :status, :project_id, :assignee_id, tag_ids: [])
   end
+
 end

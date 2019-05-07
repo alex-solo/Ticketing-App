@@ -5,5 +5,11 @@
       <%= f.label :body, 'Add a comment' %>
       <%= f.text_area :body, rows: 3, class: 'span4' %>
     </div>
-    <%= f.submit @comment.new_record? ? "Add Comment" : "Edit Comment", class: 'btn btn-primary' %>
+    <p>Change status:</p>
+    <%= select_tag :ticket_status, options_for_select(Tag.STATUSES, params[:status]), :include_blank => "Do not change" %>
+    
+    <div>
+      <%= f.submit @comment.new_record? ? "Add Comment" : "Edit Comment", class: 'btn btn-primary' %>
+    </div>
 <% end %>
+
