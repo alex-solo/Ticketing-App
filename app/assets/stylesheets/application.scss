@@ -13,3 +13,62 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
+#main {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+header {
+  width: 1000px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.nav {
+  padding: 0;
+}
+
+.nav li {
+  display: inline-block;
+  padding-left: 0px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #4a4a4d;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+th,
+td {
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+
+thead {
+  background: #395870;
+  color: #fff;
+  text-align: center;
+}
+
+tr th:first-child {
+  text-align: left;
+}
+
+td {
+  text-align: center;
+  border-bottom: 1px solid #cecfd5;
+}
+
+tr td:first-child {
+  text-align: left;
+}
+
+.btn {
+  margin-top: 20px;
+}

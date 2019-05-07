@@ -1,0 +1,35 @@
+<div class="well">
+  <%= form_for @ticket do |f| %>
+    <div class="control-group">
+      <%= f.label :project %>
+      <%= f.collection_select :project_id, Project.all, :id, :name, id: :ticket_project_id %>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 5 %>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :status %>
+      <%= f.select :status, Tag.STATUSES %>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :assignee, 'Assigned To' %>
+      <%= f.collection_select :assignee_id, User.all, :id, :name, id: :ticket_assignee_id, include_blank: "No one" %>
+    </div>
+
+    <div class="control-group">
+      <%= f.label 'Tags' %>
+      <%= f.collection_select :tag_ids, Tag.all, :id, :name, {}, multiple: true, id: :ticket_tag_ids, size: Tag.count %>
+    </div>
+    
+    <%= f.submit(@ticket.new_record? ? 'Create Ticket' : 'Update Ticket', class: 'btn btn-success') %>
+  <% end %>
+</div>

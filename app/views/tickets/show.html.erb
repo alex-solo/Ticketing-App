@@ -1,0 +1,35 @@
+<%= render 'shared/content_title', title: @ticket.name %>
+
+<p><strong>Description:</strong> <%= @ticket.body %></p>
+<p><strong>Tags:</strong> <%= tag_list(@ticket) %></p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Creator</th>
+      <th>Assignee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @ticket.status %></td>
+      <td><%= @ticket.creator.name %></td>
+      <td><%= @ticket.assignee ? @ticket.assignee.name : '-' %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Comments:</h3>
+
+<% @ticket.comments.each do |comment| %>
+  <div class='well'>
+    <p><%= comment.body %></p>
+    <p>posted by <%= comment.creator.name %></p>
+    <%= link_to 'Edit', edit_ticket_comment_path(@ticket, comment) %>
+  </div>
+<% end %>
+
+<%= render 'comments/comment_form' %>
